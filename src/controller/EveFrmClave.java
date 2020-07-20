@@ -37,8 +37,9 @@ public class EveFrmClave {
     public boolean consultarClave(String clave){
         String tarjetaRSA = this.tarjeta.getClaveRSA();
         String tarjetaCodigo = this.tarjeta.getClaveCuenta();
-        String query = "SELECT * FROM Cuenta,Tarjeta WHERE clave = "+clave+" AND"+
-                " clavecuenta = '"+tarjetaCodigo+"' AND claversa = '"+tarjetaRSA+"';";
+        String query = "SELECT * FROM Cuenta WHERE Cuenta.clave = "+Integer.parseInt(clave)
+                +" AND Cuenta.id = (SELECT Tarjeta.id FROM Tarjeta WHERE"
+                + " Tarjeta.clavecuenta = '"+tarjetaCodigo+"' AND Tarjeta.claversa = '"+tarjetaRSA+"');";
         this.conector.realizarConexion();
         ResultSet a = this.conector.consultaQueryValue(query);
         try {

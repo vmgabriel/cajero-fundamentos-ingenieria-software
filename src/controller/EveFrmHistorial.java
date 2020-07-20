@@ -15,7 +15,7 @@ public class EveFrmHistorial {
     }
     
     public ResultSet obtenerHistorial(int id){
-        String query = "SELECT * FROM Cuenta WHERE id = "+id+";";
+        String query = "SELECT * FROM Historial WHERE id_cuenta = "+id+";";
         this.conexion.realizarConexion();
         ResultSet a = this.conexion.consultaQueryValue(query);
         this.conexion.cierraConexion();
